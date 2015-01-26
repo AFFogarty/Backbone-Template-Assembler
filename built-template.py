@@ -10,3 +10,11 @@ def format_underscore_template(name, content):
 	"""
 	return '<script type="text/template" id="{0}">\n{1}\n</script>'.format(name, content)
 
+
+def build_underscore_templates():
+	# Open the file to build
+	file = open(BUILD_DIRECTORY + "index.html", "w+")
+	# Get and write it's content
+	file.write(assemble_templates)
+	file.close()
+
