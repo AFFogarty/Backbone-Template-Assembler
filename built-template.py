@@ -2,7 +2,7 @@ import os
 
 BUILD_DIRECTORY = "build/"
 HEADER_TEMPLATE_DIRECTORY = "templates"
-BACKBONE_TEMPLATE_DIRECTORY = "templates/underscore-templates/"BACKBONE_TEMPLATE_DIRECTORY = "templates/underscore-templates/"
+BACKBONE_TEMPLATE_DIRECTORY = "templates/underscore-templates/"
 
 def format_underscore_template(name, content):
 	"""
