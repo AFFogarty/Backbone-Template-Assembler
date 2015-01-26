@@ -10,12 +10,13 @@ def format_underscore_template(name, content):
 	"""
 	return '<script type="text/template" id="{0}">\n{1}\n</script>'.format(name, content)
 
+def assemble_templates(backbone_template_formatter):
 
 def build_underscore_templates():
 	# Open the file to build
 	file = open(BUILD_DIRECTORY + "index.html", "w+")
 	# Get and write it's content
-	file.write(assemble_templates)
+	file.write(assemble_templates(format_underscore_template))
 	file.close()
 
 # Execute
