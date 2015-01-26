@@ -18,3 +18,5 @@ def build_underscore_templates():
 	file.write(assemble_templates)
 	file.close()
 
+# Execute
+build_underscore_templates();
