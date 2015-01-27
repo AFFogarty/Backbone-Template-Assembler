@@ -36,3 +36,4 @@ def build_underscore_templates():
 
 # Execute
 build_underscore_templates();
+print "Templates built successfully!"
