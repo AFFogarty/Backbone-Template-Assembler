@@ -1,4 +1,4 @@
-# Backbone-Template-Assembler
+# Backbone Template Assembler
 
 Store your Backbone.js templates in separate files.  Run `python build-templates.py` to assemble your templates into one single HTML file for your single-page Backbone.js application.
 
