@@ -38,5 +38,6 @@ def build_underscore_templates():
     file.close()
 
 # Execute
-build_underscore_templates()
-print "Templates built successfully!"
+if __name__ == "__main__":
+    build_underscore_templates()
+    print("Templates built successfully!")
