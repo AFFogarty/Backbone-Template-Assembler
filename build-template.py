@@ -1,6 +1,5 @@
 import os
 
-BUILD_DIRECTORY = "build/"
 HEADER_TEMPLATE_DIRECTORY = "templates/"
 BACKBONE_TEMPLATE_DIRECTORY = "templates/underscore-templates/"
 
@@ -17,27 +16,33 @@ def assemble_templates(backbone_template_formatter):
     Assemble the header, the footer, and all backbone templates into one string.
     """
     # Grab the header content
-    output = open(HEADER_TEMPLATE_DIRECTORY + "header.html").read()
+    output = open(os.path.join(HEADER_TEMPLATE_DIRECTORY, "base.html")).read()
+
     # Attach the backbone templates
-    for file in os.listdir(BACKBONE_TEMPLATE_DIRECTORY):
-        if file.endswith(".html"):
-            name = file.rstrip(".html")
-            content = open(BACKBONE_TEMPLATE_DIRECTORY + file, "r").read()
+    templates = ""
+    for f in os.listdir(BACKBONE_TEMPLATE_DIRECTORY):
+        if f.endswith(".html"):
+            name = f.rstrip(".html")
+            content = open(os.path.join(BACKBONE_TEMPLATE_DIRECTORY, f), "r").read()
             # It is a template, so add it
-            output += backbone_template_formatter(name, content)
-    # Append the footer content
-    output += open(HEADER_TEMPLATE_DIRECTORY + "footer.html", 'r').read()
-    return output
+            templates += backbone_template_formatter(name, content)
+    return output.format(templates=templates)
 
 
-def build_underscore_templates():
+def build_underscore_templates(builddir):
     # Open the file to build
-    file = open(BUILD_DIRECTORY + "index.html", "w+")
+    if not os.path.exists(builddir):
+        os.mkdir(builddir)
+
+    output_file = open(os.path.join(builddir, "index.html"), "w+")
     # Get and write it's content
-    file.write(assemble_templates(format_underscore_template))
-    file.close()
+    output_file.write(assemble_templates(format_underscore_template))
+    output_file.close()
 
 # Execute
 if __name__ == "__main__":
-    build_underscore_templates()
+    import sys
+    builddir = sys.argv[1]
+    build_underscore_templates(builddir)
+
     print("Templates built successfully!")
