@@ -37,7 +37,7 @@ def assemble_templates(backbone_template_formatter):
     return constant_substitution(base_template, {'templates': templates})
 
 
-def constant_substitution(text, constants_dict):
+def constant_substitution(text, constants_dict=None):
     """
     Substitute some constant in the text.
 
@@ -45,6 +45,9 @@ def constant_substitution(text, constants_dict):
     :param constants_dict:
     :return:
     """
+    if not constants_dict:
+        # No constants, so return the same text
+        return text
     template = Template(text)
     return template.safe_substitute(constants_dict)
 
