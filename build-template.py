@@ -65,9 +65,9 @@ def build_underscore_templates(builddir, constants=None):
     # Get the assembled template string
     assembled_template = assemble_templates(format_underscore_template)
     # Constant replacements
-    constant_substitution(assembled_template, constants)
+    post_substitution_template = constant_substitution(assembled_template, constants)
     # Write the file content
-    output_file.write(constant_substitution(assembled_template, constants))
+    output_file.write(post_substitution_template)
     output_file.close()
 
 # Execute
