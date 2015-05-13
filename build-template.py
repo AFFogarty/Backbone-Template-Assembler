@@ -30,7 +30,7 @@ def assemble_templates(backbone_template_formatter):
     templates = ""
     for f in os.listdir(BACKBONE_TEMPLATE_DIRECTORY):
         if f.endswith(".html"):
-            name = f.rstrip(".html")
+            name = f[:len(".html")]
             content = open(os.path.join(BACKBONE_TEMPLATE_DIRECTORY, f), "r").read()
             # It is a template, so add it
             templates += backbone_template_formatter(name, content)
